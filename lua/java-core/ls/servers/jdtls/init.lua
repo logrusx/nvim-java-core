@@ -78,10 +78,18 @@ end
 ---@param root_markers string[] list of files to find the root dir of a project
 ---@return fun(file_name: string): string
 function M.get_root_finder(root_markers)
+
 	return function(file_name)
 		log.debug('finding the root_dir with root_markers ', root_markers)
 
-		local root = util.root_pattern(unpack(root_markers))(file_name)
+		local has_project_nvim, project = pcall(require, "project_nvim.project")
+
+		local root
+		if (not has_project_nvim) then
+			root = util.root_pattern(unpack(root_markers))(file_name)
+		else
+			root = project.get_project_root()
+		end
 		-- vim.fs.root
 
 		if root then
