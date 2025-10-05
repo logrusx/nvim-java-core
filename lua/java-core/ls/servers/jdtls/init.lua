@@ -13,7 +13,6 @@ local M = {}
 ---Ex:- { 'pom.xml', 'build.gradle', '.git' }
 ---@field jdtls_plugins string[] list of jdtls plugins to load on start up
 ---Ex:- { 'java-test', 'java-debug-adapter' }
----@field use_mason_jdk boolean whether to use mason jdk to load jdtls or not
 
 ---Returns a configuration for jdtls that you can pass into the setup of nvim-lspconfig
 ---@param opts JavaCoreGetConfigOptions
